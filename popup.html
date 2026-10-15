@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Selector Clicker</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>元素自动点击</h1>
+          <p id="site-name">正在读取当前页面</p>
+        </div>
+        <label class="switch" title="启用或停用自动点击">
+          <input id="enabled" type="checkbox" />
+          <span class="slider"></span>
+        </label>
+      </header>
+
+      <label for="selectors">CSS 选择器</label>
+      <textarea
+        id="selectors"
+        rows="7"
+        spellcheck="false"
+        placeholder=".ad-close&#10;[aria-label='Close ad']&#10;#popup .close"
+      ></textarea>
+      <p class="hint">每行一个选择器。匹配到可见、未禁用的元素时会点击。</p>
+
+      <div class="settings">
+        <label for="interval">
+          扫描间隔
+          <span class="input-wrap"><input id="interval" type="number" min="250" max="60000" step="250" /> ms</span>
+        </label>
+        <label for="cooldown">
+          同一元素冷却
+          <span class="input-wrap"><input id="cooldown" type="number" min="1000" max="300000" step="1000" /> ms</span>
+        </label>
+      </div>
+
+      <p id="validation" class="validation" role="alert"></p>
+
+      <div class="actions">
+        <button id="scan-now" class="secondary" type="button" title="立即在当前页面扫描一次">立即扫描</button>
+        <button id="save" type="button">保存设置</button>
+      </div>
+
+      <footer>
+        <span id="status-dot" aria-hidden="true"></span>
+        <span id="status">尚未启用</span>
+        <span id="click-count"></span>
+      </footer>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
