@@ -15,14 +15,35 @@
 2. 每行填入一个 CSS 选择器，例如：
 
    ```css
-   .ad-close
-   [aria-label="Close ad"]
-   #popup .close
+   .ad-close [aria-label="Close ad"] #popup .close;
    ```
 
 3. 点击“保存设置”，然后开启右上角开关。
 
 设置会在已打开页面中立即生效。扩展会在 DOM 更新后和设定的扫描间隔到达时检查元素；同一个元素会在冷却时间内最多点击一次。
+
+## 测试
+
+需要 Node.js 18 或更高版本。进入扩展目录后运行：
+
+```powershell
+npm test
+```
+
+如果系统未安装 `npm`，可直接运行：
+
+```powershell
+node --test tests/content.test.js tests/manifest.test.js
+```
+
+测试不依赖浏览器或第三方包，覆盖以下行为：
+
+- Manifest V3 的内容脚本、弹窗和 service worker 声明。
+- 页面配置加载后点击可见的匹配元素。
+- 不点击隐藏、禁用或已从页面移除的元素。
+- 同一元素在冷却时间内不会重复点击。
+- 无效选择器不会中断其余有效选择器的扫描。
+- 从扩展设置停用后不再点击元素。
 
 ## 注意
 

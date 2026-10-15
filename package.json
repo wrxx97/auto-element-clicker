@@ -1,0 +1,9 @@
+{
+  "name": "selector-clicker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tests for the Selector Clicker browser extension.",
+  "scripts": {
+    "test": "node --test tests/content.test.js tests/manifest.test.js"
+  }
+}
